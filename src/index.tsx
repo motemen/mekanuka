@@ -79,6 +79,6 @@ const App = asyncReactor(async (props: { chars: string[] }) => {
   );
 });
 
-const chars = parse(location.href, true).query.c!.split(/,/);
+const chars = (parse(location.href, true).query.c || "め,ぬ").split(/,/);
 
 ReactDOM.render(<App chars={chars} />, document.querySelector("#app")!);
