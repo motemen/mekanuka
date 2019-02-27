@@ -67,7 +67,9 @@ const App = asyncReactor(async (props: { chars: string[] }) => {
 
   return (
     <>
-      <div>{chars.map(char => [<strong>{char}</strong>, "か"])}</div>
+      <div>
+        {chars.map((char, i) => [<strong key={i}>{char}</strong>, "か"])}
+      </div>
       <div
         dangerouslySetInnerHTML={{
           __html: doc.querySelector("svg")!.outerHTML
