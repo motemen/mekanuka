@@ -2,13 +2,16 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import parse from "url-parse";
 
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { asyncReactor } from "async-reactor";
+
 jss.setup(preset());
 
 const DRAW_SPEED = 50; // [px/s]
 
-(async () => {
-  const chars = parse(location.href, true).query.c!.split(/,/);
-
+const App = asyncReactor(async (props: { chars: string[] }) => {
+  const { chars } = props;
   const char = chars[Math.floor(Math.random() * chars.length)];
 
   let code = char
@@ -62,7 +65,18 @@ const DRAW_SPEED = 50; // [px/s]
     animationDelay += drawDuration;
   }
 
-  document
-    .querySelector("#svg-container")!
-    .insertAdjacentHTML("afterbegin", doc.querySelector("svg")!.outerHTML);
-})();
+  return (
+    <>
+      <div>{chars.map(char => [<strong>{char}</strong>, "か"])}</div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: doc.querySelector("svg")!.outerHTML
+        }}
+      />
+    </>
+  );
+});
+
+const chars = parse(location.href, true).query.c!.split(/,/);
+
+ReactDOM.render(<App chars={chars} />, document.querySelector("#app")!);
