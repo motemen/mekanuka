@@ -16,10 +16,12 @@
     "copy-webpack-plugin": "^5.0.0",
     "file-loader": "^3.0.1",
     "gh-pages": "^2.0.1",
+    "license-info-webpack-plugin": "^2.0.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
     "async-reactor": "^1.2.2",
